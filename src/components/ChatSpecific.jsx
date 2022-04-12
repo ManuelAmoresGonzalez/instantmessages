@@ -4,8 +4,8 @@ import '../style/chatspecific.css'
 const ChatSpecific = ({ nombre, mensaje }) => {
   return (
     <div className="card">
-        <h3>{nombre}</h3>
-        <h3>{mensaje}</h3>
+        <h6>{nombre}</h6>
+        <h6>{mensaje}</h6>
     </div>
   )
 }

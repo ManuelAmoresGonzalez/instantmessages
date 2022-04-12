@@ -3,7 +3,7 @@ import '../style/chatscomponent.css'
 
 const ChatsComponent = () => {
   return (
-    <div className='firstDivChats prueba'>ChatsComponent</div>
+    <div className='firstDivChats'>ChatsComponent</div>
   )
 }
 

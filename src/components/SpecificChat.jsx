@@ -24,19 +24,48 @@ const SpecificChat = () => {
         {
           nombre: "Ignacio Amores",
           mensaje: "El cachorron ",
-      },
-      {
-        nombre: "Ignacio Amores",
-        mensaje: "El cachorron ",
-    },
-    {
-      nombre: "Ignacio Amores",
-      mensaje: "El cachorron ",
-  },
-      ];
+        },
+        {
+          nombre: "Ignacio Amores",
+          mensaje: "El cachorron ",
+        },
+        {
+          nombre: "Ignacio Amores",
+          mensaje: "El cachorron ",
+        },
+                {
+            nombre: "Manuel Amores",
+            mensaje: "Hola a todos ",
+        },
+        {
+            nombre: "Ali Camilo",
+            mensaje: "Yes si soy ",
+        },
+        {
+            nombre: "Carlos Guabina",
+            mensaje: "HMe extraña la araña ",
+        },
+        {
+            nombre: "Ignacio Amores",
+            mensaje: "El cachorron ",
+        },
+        {
+          nombre: "Ignacio Amores",
+          mensaje: "El cachorron ",
+        },
+        {
+          nombre: "Ignacio Amores",
+          mensaje: "El cachorron ",
+        },
+        {
+          nombre: "Ignacio Amores",
+          mensaje: "El cachorron ",
+        },
+        
+    ];
 
   return (
-    <div className='firstDivSpecific prueba'>
+    <div className='firstDivSpecific'>
         <h1>SpecificChat</h1>     
         <>
         {data.map(({ nombre, mensaje }) => {

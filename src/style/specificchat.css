@@ -1,5 +1,5 @@
 .firstDivSpecific{
-    width: 25%;
     background: green;
     height: 100vh;
+    overflow:auto;
 }
