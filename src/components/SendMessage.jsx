@@ -15,7 +15,7 @@ const SendMessage = () => {
                      value={message}
                      onChange={(e) => setMessage(e.target.value)}
               />
-              { <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">send</i></a> }
+             { <a className="btn-floating btn-large waves-effect waves-light green" href="www.google.com"><i class="material-icons">send</i></a> }
               <label for="icon_prefix">Mensaje</label>
 
               
