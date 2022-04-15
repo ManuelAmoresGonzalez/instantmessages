@@ -15,6 +15,6 @@ const ChatSpecific = ({ nombre, mensaje }) => {
           <h6>{mensaje}</h6>
       </div>
   )
-}
+} 
 
 export default ChatSpecific
