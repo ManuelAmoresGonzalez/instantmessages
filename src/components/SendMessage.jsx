@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import '../style/sendmessage.css'
+import React, {useState} from 'react'
 
-const SendMessage = () => {
+//material UI
+import {Button, Input} from '@mui/material'
+//firebase
+import { database, auth } from '../firebaseConfig';
+import firebase from "../../node_modules/firebase/compat"; 
 
-    const [message, setMessage] = useState("");
+function SendMessage() {
+  const [message, setMessage] = useState('');
+
+  async function sendMessage(e){
+    e.preventDefault()
+    const {uid, photoURL} = auth.currentUser  
+    await database.collection('messages').add({
+      text: message,
+      photoURL ,
+      uid,
+      createdAT: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    setMessage('');
+  }
+
   return (
     <div>
-
-        <form className='positionComponent'>
-            <div className="input-field col s12">              
-              <textarea id="icon_prefix "
-                     type="text"
-                     className="materialize-textarea"
-                     value={message}
-                     onChange={(e) => setMessage(e.target.value)}
-              />
-             { <a className="btn-floating btn-large waves-effect waves-light green" href="www.google.com"><i class="material-icons">send</i></a> }
-              <label for="icon_prefix">Mensaje</label>
-
-              
-            </div>     
-       
+        <form onSubmit={sendMessage}>
+          <Input value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
+          <Button type='submit' >Enviar mensaje</Button>
         </form>
-
-
     </div>
-
   )
 }
 
