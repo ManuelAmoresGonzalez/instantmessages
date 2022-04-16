@@ -1,16 +1,27 @@
 import React, {useState, useEffect} from 'react'
 import { database, auth } from '../firebaseConfig';
+import { collection, addDoc } from "firebase/firestore";
 import SendMessage from './SendMessage';
 import SingOut from './SingOut'
 
 function ChatComponent() {
+
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     database.collection('messages').orderBy('createdAT').limit(25).onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
     })
+
   }, [])
 
+  async function createCollection(){
+    const {uid, photoURL, displayName} = auth.currentUser  
+    const newCollection = await addDoc(collection(database, displayName), {
+      displayName,
+    });
+  
+  }
+  createCollection()
 
   return (
     <div>

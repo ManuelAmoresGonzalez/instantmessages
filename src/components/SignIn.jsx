@@ -5,7 +5,8 @@ import {Button} from '@mui/material'
 
 //firebase
 import firebase from 'firebase/compat/app'
-import { auth } from '../firebaseConfig';
+import { auth , database} from '../firebaseConfig';
+import { collection, addDoc } from "firebase/firestore";
 
 function SignIn() {
   function singInwithGoogle(){
@@ -18,6 +19,9 @@ function SignIn() {
       <Button onClick={singInwithGoogle} >Iniciar sesion con Google</Button>
     </div>
   )
+  
 }
+
+
 
 export default SignIn
