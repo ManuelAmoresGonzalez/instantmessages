@@ -1,6 +1,7 @@
 import React from 'react'
 import SignIn from './components/SignIn'
 import ChatComponent from './components/ChatComponent'
+import ChatsComponent from './components/ChatsComponent';
 import './App.css';
 
 
@@ -15,7 +16,7 @@ function App() {
   const [user] = useAuthState(auth)
   return (
     <div>
-      {user ? <ChatComponent /> : <SignIn />}
+      {user ? <ChatsComponent /> : <SignIn />}
       
     </div>
   )

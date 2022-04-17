@@ -1,4 +1,19 @@
-.firstDivChats{
-    background: white;
-    overflow:auto;
+.container{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+
+
+.conversations{
+    display: flex;
+}
+
+.chats{
+    padding: 2rem;
+    background-color: grey;
+
+}
+
+.chat{
+    display: flex;
 }
