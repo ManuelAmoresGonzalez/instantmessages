@@ -8,11 +8,13 @@ import { database, auth } from '../firebaseConfig';
 import { doc, getDoc } from "firebase/firestore";
 
 import { Button } from '@mui/material';
+import SpecificChat from './SpecificChat';
 
 
 function ChatsComponent() {
   const [conversations, setConversations] = useState([]);
-
+  const  [displayChat, setDisplayChat] = useState(false);
+  const [idConversation, setId] = useState("")
 
   useEffect(() => {
     database.collection('conversaciones').where('person1', '==',auth.currentUser.uid).onSnapshot( snapshot => {
@@ -21,6 +23,9 @@ function ChatsComponent() {
       setConversations(snapshot.docs.map( doc =>   doc.id ));
     })
   }, [])
+
+  useEffect( () => {
+  }, [displayChat]);
 
 
   async function createCollection(){
@@ -47,7 +52,9 @@ function ChatsComponent() {
 
   function openChat(e, index){
     e.preventDefault()
-    console.log(index)
+    setId(index)
+    setDisplayChat(!displayChat)
+    console.log(idConversation)
   }
 
   return (
@@ -60,7 +67,7 @@ function ChatsComponent() {
         ))}
       </div>
       <div className='chat'>
-        <ChatComponent/>
+        {displayChat? <ChatComponent  idConversation={idConversation} />: <SpecificChat/>}
       </div>
     </div>
   )

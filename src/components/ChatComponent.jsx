@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import SendMessage from './SendMessage';
 import SingOut from './SingOut'
 
@@ -11,13 +12,14 @@ import { doc, getDoc } from "firebase/firestore";
 import {query, where, getDocs } from "firebase/firestore";
 
 
-function ChatComponent() {
+const ChatComponent = ({idConversation}) =>{
 
   const [messages, setMessages] = useState([]);
   let boolean=false
   useEffect(() => {
-    database.collection('conversaciones/conversacion1/messages').orderBy('createdAt').limit(100).onSnapshot( snapshot => {
+    database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').limit(100).onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
+      console.log(snapshot)
     })
     
   }, [])
@@ -37,9 +39,13 @@ function ChatComponent() {
         ))}
       </div>
       
-      <SendMessage />
+      <SendMessage idConversation={idConversation} />
     </div>
   )
+}
+
+ChatComponent.propTypes = {
+  idConversation: PropTypes.string
 }
 
 export default ChatComponent

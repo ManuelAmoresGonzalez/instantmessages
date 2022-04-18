@@ -66,18 +66,7 @@ const SpecificChat = () => {
 
   return (
     <div className='firstDivSpecific'>
-        <h1>SpecificChat</h1>     
-        <>
-        {data.map(({ nombre, mensaje }) => {
-        return (
-          <ChatSpecific
-            key={nombre}
-            nombre={nombre}
-            mensaje={mensaje}
-          />
-        );
-        })}
-        </>
+        Dele click en una conversación para ver los mensajes
     </div>
   )
 }

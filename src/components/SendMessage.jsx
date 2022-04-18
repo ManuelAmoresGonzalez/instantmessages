@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
 
 //material UI
 import {Button, Input} from '@mui/material'
@@ -6,17 +7,17 @@ import {Button, Input} from '@mui/material'
 import { database, auth } from '../firebaseConfig';
 import firebase from "../../node_modules/firebase/compat"; 
 
-function SendMessage() {
+const SendMessage= ({idConversation}) => {
   const [message, setMessage] = useState('');
 
   async function sendMessage(e){
     e.preventDefault()
     const {uid, photoURL} = auth.currentUser  
-    await database.collection('messages').add({
+    await database.collection('conversaciones/'+ idConversation +'/messages').add({
       text: message,
       photoURL ,
       uid,
-      createdAT: firebase.firestore.FieldValue.serverTimestamp()
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     setMessage('');
   }
@@ -29,6 +30,9 @@ function SendMessage() {
         </form>
     </div>
   )
+}
+SendMessage.propTypes = {
+  idConversation: PropTypes.string
 }
 
 export default SendMessage
