@@ -17,7 +17,7 @@ function ChatsComponent() {
   const [idConversation, setId] = useState("")
 
   useEffect(() => {
-    database.collection('conversaciones').where('person1', '==',auth.currentUser.uid).onSnapshot( snapshot => {
+    database.collection('conversaciones').where('person1' || 'person2', '==',auth.currentUser.uid).onSnapshot( snapshot => {
       snapshot.docs.forEach((doc) =>{
       });
       setConversations(snapshot.docs.map( doc =>   doc.id ));
