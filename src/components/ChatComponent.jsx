@@ -19,7 +19,6 @@ const ChatComponent = ({idConversation}) =>{
   useEffect(() => {
     database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').limit(100).onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
-      console.log(snapshot)
     })
     
   }, [])

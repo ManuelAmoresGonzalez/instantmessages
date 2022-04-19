@@ -13,41 +13,29 @@ import SpecificChat from './SpecificChat';
 
 function ChatsComponent() {
   const [conversations, setConversations] = useState([]);
+  const [conversations2, setConversations2] = useState([]);
   const  [displayChat, setDisplayChat] = useState(false);
   const [idConversation, setId] = useState("")
 
   useEffect(() => {
-    database.collection('conversaciones').where('person1' || 'person2', '==',auth.currentUser.uid).onSnapshot( snapshot => {
-      snapshot.docs.forEach((doc) =>{
-      });
-      setConversations(snapshot.docs.map( doc =>   doc.id ));
-    })
+    GetConversations()
+  
   }, [])
 
   useEffect( () => {
   }, [displayChat]);
 
 
-  async function createCollection(){
-    const {uid, photoURL, displayName} = auth.currentUser 
+  function GetConversations(){
+    database.collection('conversaciones').where('person1', '==',auth.currentUser.uid).onSnapshot( snapshot => {
+      setConversations(snapshot.docs.map( doc =>   doc.id ));
+    })
 
-    // const docRef = doc(database,displayName, '1PjYsDi6arzB55FzK9Kd');
-    // const docSnap = await getDoc(docRef);
+    database.collection('conversaciones').where('person2', '==',auth.currentUser.uid).onSnapshot( snapshot => {
+      setConversations2(snapshot.docs.map( doc =>   doc.id ));
+    })
 
-    // if (docSnap.exists()) {
-    //   console.log("Document data:", docSnap.data());
-    // } else {
-    //   // doc.data() will be undefined in this case
-    //   console.log("No such document!");
-    // }
-    const q = query(collection(database, "conversaciones"), where('person1', '==',auth.currentUser.uid));
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log( doc.id + doc.data());
-    });
-    return querySnapshot;
+    
   }
 
   function openChat(e, index){
@@ -61,6 +49,11 @@ function ChatsComponent() {
     <div className='container'>
       <div className='conversations'>
         {conversations.map( index => (
+          <div className='chats'>
+            <Button onClick={(event) => openChat(event, index)}> {index}</Button>
+          </div>
+        ))}
+        {conversations2.map( index => (
           <div className='chats'>
             <Button onClick={(event) => openChat(event, index)}> {index}</Button>
           </div>
