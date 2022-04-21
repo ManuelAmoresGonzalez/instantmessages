@@ -1,21 +1,36 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { storage } from "../firebaseConfig";
 import '../style/dragdropcomponent.css'
+
+import { getStorage, ref} from "firebase/storage";
+
+
+
 
 
 function DragDropCOmponent() {
-  const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
-  const changeImage = (e) => {
+  const sendFile = (e) => {
+  
+
+
     console.log(e.target.files);
-    const file= e.target.files[0];
+    
     if (e.target.files[0] !== undefined) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (e) => {
-        e.preventDefault();
-        setImageSelectedPrevious(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
-      };
+      const file= e.target.files[0];
+      console.log("Nombre de la vara: "+ file.name)
+      const storageRef= storage.ref(`/images/${file.name}`);
+      const task= storageRef.put(file);
+      task.on('state_changed', snapshot => {
+      },error => {
+          console.log(error.message)
+      }, () => {
+          console.log("Cargada con exito: ", task.snapshot.downloadURL)
+          //setImageSelectedPrevious(picture= task.snapshot.downloadURL)
+          //console.log("Este es es link: ",{picture})          
+    })
     }
+    
   };
   return (
     <div>
@@ -28,7 +43,7 @@ function DragDropCOmponent() {
             accept="image/*"
             multiple
             onChange={(e) => {
-              changeImage(e);
+                sendFile(e);
             }}
           />
             
