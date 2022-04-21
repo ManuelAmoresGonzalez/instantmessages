@@ -1,17 +1,16 @@
 import React from 'react'
 import '../style/chatscomponent.css'
+import DragDropCOmponent from './DragDropCOmponent'
 import SendMessage from './SendMessage'
+import Dropzone from 'react-dropzone'
 
-const ChatsComponent = ({ nombre, mensaje }) => {
-  console.log("LLego al componente")
-  console.log(mensaje)
+
+const ChatsComponent = () => {
   return (
     
-    <div className='firstDivChats'>ChatsComponent
-          
-      <h6>{nombre}</h6>
-      <h6>{mensaje}</h6>
-      < SendMessage/>
+    <div className='firstDivChats'>ChatsComponent       
+      <DragDropCOmponent/> 
+      <SendMessage/>      
     </div>
 
 

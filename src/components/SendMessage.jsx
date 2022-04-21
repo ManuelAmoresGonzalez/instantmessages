@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../style/sendmessage.css'
+import DragDropCOmponent from "./DragDropCOmponent";
 
 const SendMessage = () => {
 
