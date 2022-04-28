@@ -2,9 +2,31 @@
     background: green;
 }
 
-img {
+.photoURL {
     border-radius: 50%;
     height: 45px;
     margin-top: -20px;
     border: 2px solid black;
+  }
+
+.media{
+    width: 10rem;
+    height: 10rem;
+}
+
+.sent {
+    background-color: #395dff;
+    color: white;
+    border-top-right-radius: 1000px;
+    flex-direction: row-reverse;
+    padding: 20px 20px 0 10px;
+    text-align: end;
+    float: right;
+  }
+  
+  .received {
+    border: 1px solid lightgray;
+    background-color: #FAFAFA;
+    border-top-left-radius: 1000px;
+    float: left;
   }

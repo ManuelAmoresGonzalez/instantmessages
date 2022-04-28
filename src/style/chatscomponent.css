@@ -2,3 +2,19 @@
     display: grid;
     grid-template-columns: 25% 1fr;
 }
+
+
+.conversations{
+    display: flex;
+    flex-direction: column;
+}
+
+.chats{
+    padding: 2rem;
+    background-color: grey;
+
+}
+
+.chat{
+    display: flex;
+}
