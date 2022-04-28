@@ -2,36 +2,42 @@ import { useState } from "react";
 import styled from "styled-components";
 import { storage } from "../firebaseConfig";
 import '../style/dragdropcomponent.css'
-
 import { getStorage, ref} from "firebase/storage";
 
 
 
-
-
-function DragDropCOmponent() {
-  const sendFile = (e) => {
+function DragDropCOmponent() {  
   
-
-
-    console.log(e.target.files);
-    
-    if (e.target.files[0] !== undefined) {
-      const file= e.target.files[0];
-      console.log("Nombre de la vara: "+ file.name)
-      const storageRef= storage.ref(`/images/${file.name}`);
-      const task= storageRef.put(file);
-      task.on('state_changed', snapshot => {
-      },error => {
-          console.log(error.message)
-      }, () => {
-          console.log("Cargada con exito: ", task.snapshot.downloadURL)
-          //setImageSelectedPrevious(picture= task.snapshot.downloadURL)
-          //console.log("Este es es link: ",{picture})          
-    })
-    }
-    
+  const sendFile = (e) => {
+      const file= e.target.files[0];  
+      const typeFile = file.type.split('/')[0]  
+      if( typeFile === 'image'){
+        createFile(typeFile, file)
+      }        
+      else if ( typeFile === 'video'){
+        createFile(typeFile, file)
+      }        
+      else
+        createFile(typeFile, file)     
   };
+
+  const createFile = (typeFile, file) => {
+    console.log("ENtre")
+    const storageRef= storage.ref(`/${typeFile}/${file.name}`);
+    const task= storageRef.put(file);
+    task.on('state_changed', snapshot => {
+    },error => {
+        console.log(error.message)
+    }, () => {        
+      var storageRef= storage.ref(`/${typeFile}/${file.name}`)
+      storageRef.getDownloadURL().then(function(url){
+      console.log("Esta es la url: "+url)
+      })
+    })
+  }    
+
+
+  
   return (
     <div>
         <br />
@@ -46,8 +52,6 @@ function DragDropCOmponent() {
                 sendFile(e);
             }}
           />
-            
-
         </div>
     </div>
   );
