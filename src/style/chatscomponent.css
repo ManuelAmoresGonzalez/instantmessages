@@ -1,19 +1,4 @@
-.container{
+.rowChats{
     display: grid;
-    grid-template-columns: auto auto ;
-}
-
-
-.conversations{
-    display: flex;
-}
-
-.chats{
-    padding: 2rem;
-    background-color: grey;
-
-}
-
-.chat{
-    display: flex;
+    grid-template-columns: 25% 1fr;
 }

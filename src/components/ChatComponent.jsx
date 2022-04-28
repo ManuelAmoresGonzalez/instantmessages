@@ -2,14 +2,12 @@ import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import SendMessage from './SendMessage';
 import SingOut from './SingOut'
+import '../style/chatcomponent.css'
 
 
 //firebase
 import { database, auth } from '../firebaseConfig';
-import { collection, addDoc } from "firebase/firestore";
-import { getDatabase, ref, get } from 'firebase/database'
-import { doc, getDoc } from "firebase/firestore";
-import {query, where, getDocs } from "firebase/firestore";
+import DragDropCOmponent from './DragDropCOmponent';
 
 
 const ChatComponent = ({idConversation}) =>{
@@ -37,7 +35,7 @@ const ChatComponent = ({idConversation}) =>{
           </div>
         ))}
       </div>
-      
+      <DragDropCOmponent/>
       <SendMessage idConversation={idConversation} />
     </div>
   )

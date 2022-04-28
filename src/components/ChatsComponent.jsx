@@ -18,8 +18,7 @@ function ChatsComponent() {
   const [idConversation, setId] = useState("")
 
   useEffect(() => {
-    GetConversations()
-  
+    GetConversations()  
   }, [])
 
   useEffect( () => {
@@ -46,7 +45,7 @@ function ChatsComponent() {
   }
 
   return (
-    <div className='container'>
+    <div className='rowChats'>
       <div className='conversations'>
         {conversations.map( index => (
           <div className='chats'>

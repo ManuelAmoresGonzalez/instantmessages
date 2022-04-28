@@ -1,0 +1,10 @@
+.messages{
+    background: green;
+}
+
+img {
+    border-radius: 50%;
+    height: 45px;
+    margin-top: -20px;
+    border: 2px solid black;
+  }

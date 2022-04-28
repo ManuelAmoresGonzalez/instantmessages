@@ -1,0 +1,23 @@
+h3{
+    position: absolute;
+}
+
+ .file-upload-input {
+   z-index: 10;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   height: 100%;
+   outline: none;
+   opacity: 0;
+   cursor: pointer;
+ }
+
+ .image-upload-wrap {
+   bottom: -10;
+   text-align: center;
+   height: 100px;
+   border: 4px solid #d0d7de;
+   margin-left: 10px;
+   margin-right: 10px;
+ }
