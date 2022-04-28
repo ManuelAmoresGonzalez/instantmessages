@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { storage } from "../firebaseConfig";
 import '../style/dragdropcomponent.css'
-import { getStorage, ref} from "firebase/storage";
-import SendMessage from './SendMessage';
 
 
 
@@ -22,7 +20,6 @@ function DragDropCOmponent({idConversation}) {
   };
 
   const createFile = (typeFile, file) => {
-    console.log("ENtre")
     const storageRef= storage.ref(`/${typeFile}/${file.name}`);
     const task= storageRef.put(file);
     task.on('state_changed', snapshot => {
