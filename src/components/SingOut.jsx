@@ -10,7 +10,7 @@ function SingOut() {
     auth.signOut();
   } 
   return (    
-      <Button className='mover' onClick={ logOut }><i className='material-icons buttonCloseSession'>input</i></Button>    
+      <Button className='mover' onClick={ logOut }><i className='material-icons buttonCloseSession'>settings_power</i></Button>    
   )
 }
 

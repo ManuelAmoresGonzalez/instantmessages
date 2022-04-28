@@ -35,7 +35,7 @@ const ChatComponent = ({idConversation}) =>{
           </div>
         ))}
       </div>
-      <DragDropCOmponent/>
+      <DragDropCOmponent idConversation={idConversation} />
       <SendMessage idConversation={idConversation} />
     </div>
   )

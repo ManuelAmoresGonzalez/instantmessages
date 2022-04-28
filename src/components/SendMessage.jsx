@@ -12,7 +12,20 @@ const SendMessage= ({idConversation}) => {
 
   async function sendMessage(e){
     e.preventDefault()
+    console.log("Entre al componente 1")
     const {uid, photoURL} = auth.currentUser  
+    await database.collection('conversaciones/'+ idConversation +'/messages').add({
+      text: message,
+      photoURL ,
+      uid,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    setMessage('');
+  }
+
+  async function createMessageFile(){
+    const {uid, photoURL} = auth.currentUser  
+    console.log("Entre al componente 2")
     await database.collection('conversaciones/'+ idConversation +'/messages').add({
       text: message,
       photoURL ,
