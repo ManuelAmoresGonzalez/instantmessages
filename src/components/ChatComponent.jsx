@@ -27,12 +27,14 @@ const ChatComponent = ({idConversation}) =>{
       <SingOut />
       <div className='messages'>
         {messages.map( ({id,text, photoURL, uid, media, typeFile }) => (
-          <div>
+          <div className='boxMessages'>
             {
-              <div className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}`} key={id}>
-                <img className="photoURL"src={photoURL}></img>
-              
+              <div className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}` } key={id}>
+                <div className='boxMessages'>
+                <img className="photoURL" src={photoURL}></img>              
                 <p>{text}</p>
+                </div>
+                
               </div>
             }
           </div>
