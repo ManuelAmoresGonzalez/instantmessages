@@ -1,8 +1,8 @@
 import React from 'react'
 
-const MediaImg = ({url}) => {
+const MediaImg = ({media}) => {
   return (
-    <div>MediaImg</div>
+    <div>Componente imagen<img className="photoURL" src={media}></img> </div>
   )
 }
 

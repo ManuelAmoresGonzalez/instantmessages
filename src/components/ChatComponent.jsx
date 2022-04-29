@@ -8,6 +8,11 @@ import '../style/chatcomponent.css'
 //firebase
 import { database, auth } from '../firebaseConfig';
 import DragDropCOmponent from './DragDropCOmponent';
+import MediaImg from './MediaImg';
+import MediaAudio from './MediaAudio';
+import MediaVideo from './MediaVideo';
+import MediaText from './MediaText';
+
 
 
 const ChatComponent = ({idConversation}) =>{
@@ -21,7 +26,6 @@ const ChatComponent = ({idConversation}) =>{
     
   }, [])
 
-
   return (
     <div>
       <SingOut />
@@ -31,8 +35,20 @@ const ChatComponent = ({idConversation}) =>{
             {
               <div className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}` } key={id}>
                 <div className='boxMessages'>
-                <img className="photoURL" src={photoURL}></img>              
-                <p>{text}</p>
+                <img className="photoURL" src={photoURL}></img> 
+                  {(() => {
+                          switch (typeFile) {
+                            case "image":  return <MediaImg   media={media}  />;
+                            case "video":  return <MediaVideo media={media}  />;
+                            case "audio":  return <MediaAudio media={media}  />;
+                            default:       return <MediaText  text={text}    />;
+                          }
+                        })()
+
+                    //typeFile === 'image' ? <MediaImg /> : <MediaVideo />
+                  }
+                             
+                {/* <p>{text}</p> */}
                 </div>
                 
               </div>
