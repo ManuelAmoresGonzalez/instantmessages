@@ -1,11 +1,19 @@
 import React from 'react'
 
 const MediaAudio= ({media}) => {
-  console.log("Este es el audio", {media})
+  let link= {media}
   return (
-    <div>Componente audio<audio src={media.media}
-    autoplay width="100" height="100"></audio>
-</div>
+    <div>Componente audio
+      <audio controls>
+        <source src={media} type="audio/ogg"/>
+        <source src={media} type="audio/mpeg"/>
+      </audio>
+
+
+
+    
+ 
+    </div>
   )
 }
 
