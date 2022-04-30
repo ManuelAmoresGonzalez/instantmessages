@@ -5,8 +5,8 @@ import '../style/dragdropcomponent.css'
 //firebase
 import { database, auth } from '../firebaseConfig';
 import firebase from "../../node_modules/firebase/compat"; 
-
-
+//CryptoJS
+import CryptoJS from 'crypto-js'
 
 function DragDropCOmponent({idConversation}) {  
   
@@ -41,13 +41,19 @@ function DragDropCOmponent({idConversation}) {
   async function sendMedia(url, typeFile){
     console.log("Entro en la funcion de enviar media")
     const {uid, photoURL} = auth.currentUser  
-    console.log("Entre al componente 2")
+    console.log("Entre al componente 2");
+
+    const cifrar=(texto)=>{
+      var textocifrado = CryptoJS.AES.encrypt(texto, 'ConejitosTraviesos').toString();
+      return textocifrado;
+      }
+
     await database.collection('conversaciones/'+ idConversation +'/messages').add({
       text: "",
       photoURL ,
       uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      media: url,
+      media: cifrar(url),
       typeFile:typeFile
     })
   }

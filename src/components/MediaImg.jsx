@@ -1,8 +1,17 @@
 import React from 'react'
+//CryptoJS
+import CryptoJS from 'crypto-js'
 
 const MediaImg = ({media}) => {
+
+  const descifrar=(texto)=>{
+    var bytes = CryptoJS.AES.decrypt(texto, 'ConejitosTraviesos');
+    var textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
+    return textoDescifrado; 
+  }
+
   return (
-    <div>Componente imagen<img className="photoURL" src={media}></img> </div>
+    <div>Componente imagen<img className="photoURL" src={descifrar(media)}></img> </div>
   )
 }
 
