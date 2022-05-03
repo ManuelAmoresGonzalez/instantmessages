@@ -4,7 +4,23 @@
   border-radius: 50%;
 }
 
+.photoMessage{
+  margin-right: 18px;
+  object-fit: cover;
+  border-radius: 6px;
+  height: 30vw;
+  /* width: 30vw; */
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
 .boxMessages{
-  left: 70%;
   text-align: center;
+  background-color: #4343ff;
+  border-radius: 30px;
+  width: 50%;
+  color: white;
+  font-weight: 400;
 }

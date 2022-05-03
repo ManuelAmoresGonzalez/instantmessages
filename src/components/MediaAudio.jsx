@@ -11,7 +11,7 @@ const MediaAudio= ({media}) => {
   }
 
   return (
-    <div>Componente audio
+    <div>
       <audio controls>
         <source src={descifrar(media)} type="audio/ogg"/>
         <source src={descifrar(media)} type="audio/mpeg"/>
