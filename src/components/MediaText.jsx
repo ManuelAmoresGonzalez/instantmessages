@@ -1,6 +1,7 @@
 import React from 'react'
 //CryptoJS
 import CryptoJS from 'crypto-js'
+import '../style/chatcomponent.css'
 
 const MediaText = ({text}) => {
 
@@ -13,7 +14,7 @@ const MediaText = ({text}) => {
   console.log(text);
   const newText = descifrar(text);
   return (
-    <div><p>{newText}</p></div>
+    <div className='texto'><p>{newText}</p></div>
   )
 }
 

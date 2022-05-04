@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import React, { useState }  from 'react'
-import DateTimePicker from 'react-datetime-picker';
-import swal from "sweetalert2";
-=======
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import Button from '@mui/material/Button';
->>>>>>> fdd3b8a189c969c8d578394645ca1da6d352c245
 
 
 //firebase
@@ -18,11 +12,6 @@ export const Reminder = () => {
   const [description, setDescription] = useState("")
   var hoy = new Date();
 
-<<<<<<< HEAD
-  return (
-    <div>
-        <h5>este es</h5>
-=======
   async function getValues(e ){
     e.preventDefault()
     const {uid} = auth.currentUser
@@ -48,7 +37,6 @@ export const Reminder = () => {
       <DateTimePicker onChange={onChange} value={value} />
       {console.log("Este es el valor: " + hoy + " el otro: " + value)}
       <Button className="button-reminders" onClick={getValues}>Crear recordatorio</Button>
->>>>>>> fdd3b8a189c969c8d578394645ca1da6d352c245
     </div>
   );
 };

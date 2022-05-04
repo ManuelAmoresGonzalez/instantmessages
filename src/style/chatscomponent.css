@@ -1,7 +1,30 @@
 .rowChats{
     width: 100%;
     display: grid;
-    margin-left: 5%;
-    margin-top: 5%;
-    grid-template-columns: 20% 60%;
+    grid-template-columns: 20% 75%;
+}
+
+.conversations{
+    margin-right: 2%;
+    border-right: outset;
+    border-right-style: inset;
+}
+
+.chats{
+    border-bottom: groove;
+    border-bottom-style: inset;
+    padding-block: 10px;
+}
+
+.botones{
+    display: grid;
+    border-top: groove;
+    justify-content: center;
+    border-top-style: outset;
+    background-color: white;
+    position:fixed;
+    bottom:0;
+    left: 5;
+    width:19.5%;
+    z-index:100;
 }
