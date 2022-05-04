@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
+import '../style/chatcomponent.css'
 
 //material UI
 import {Button, Input} from '@mui/material'
@@ -38,7 +39,7 @@ const SendMessage= ({idConversation}) => {
   }
 
   return (
-    <div>
+    <div className='inputsChat'>
         <form onSubmit={sendMessage}>
           <Input  className='message-input' value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
           <Button type='submit' >Enviar mensaje</Button>
