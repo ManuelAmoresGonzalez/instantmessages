@@ -40,7 +40,7 @@ const SendMessage= ({idConversation}) => {
   return (
     <div>
         <form onSubmit={sendMessage}>
-          <Input value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
+          <Input  className='message-input' value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
           <Button type='submit' >Enviar mensaje</Button>
         </form>
     </div>

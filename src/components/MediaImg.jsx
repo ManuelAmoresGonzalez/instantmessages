@@ -11,7 +11,7 @@ const MediaImg = ({media}) => {
   }
 
   return (
-    <div>Componente imagen<img className="photoURL" src={descifrar(media)}></img> </div>
+    <div><img className="photoMessage" src={descifrar(media)}></img> </div>
   )
 }
 

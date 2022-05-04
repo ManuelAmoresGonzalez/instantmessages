@@ -1,8 +1,7 @@
 .rowChats{
-    width: 80%;
+    width: 100%;
     display: grid;
-    margin-left: 20%;
+    margin-left: 5%;
+    margin-top: 5%;
     grid-template-columns: 20% 60%;
 }
-
-

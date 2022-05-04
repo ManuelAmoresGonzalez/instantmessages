@@ -13,7 +13,7 @@ const MediaText = ({text}) => {
   console.log(text);
   const newText = descifrar(text);
   return (
-    <div> Componente texto <p>{newText}</p></div>
+    <div><p>{newText}</p></div>
   )
 }
 
