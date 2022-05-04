@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ChatComponent from './ChatComponent';
+import CreateChat from './CreateChat';
 import { Reminder } from './Reminder';
 import '../style/chatscomponent.css'
 import SingOut from './SingOut'
@@ -62,7 +63,7 @@ function ChatsComponent() {
         ))}
         <div className='botones'>
           <div className='botonesArriba'>
-            <Button className='newChat'>Nuevo chat</Button>
+            <CreateChat />
             <Button className='myID'>Mi ID</Button>
           </div>
           <SingOut/>

@@ -18,7 +18,7 @@ function App() {
   const [user] = useAuthState(auth)
   return (
     <div>
-      <ViewReminder/>
+      
       {user ? <ChatsComponent /> : <SignIn />}
       
     </div>
