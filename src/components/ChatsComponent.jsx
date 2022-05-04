@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ChatComponent from './ChatComponent';
+import { Reminder } from './Reminder';
 import '../style/chatscomponent.css'
 
 //firebase
@@ -47,6 +48,7 @@ function ChatsComponent() {
   return (
     <div className='rowChats'>
       <div className='conversations'>
+      <Reminder/>
         {conversations.map( index => (
           <div className='chats'>
             <Button onClick={(event) => openChat(event, index)}> {index}</Button>
