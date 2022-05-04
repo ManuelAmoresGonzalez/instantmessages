@@ -37,18 +37,6 @@ const SendMessage= ({idConversation}) => {
     setMessage('');
   }
 
-  async function createMessageFile(){
-    const {uid, photoURL} = auth.currentUser  
-    console.log("Entre al componente 2")
-    await database.collection('conversaciones/'+ idConversation +'/messages').add({
-      text: message,
-      photoURL ,
-      uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    setMessage('');
-  }
-
   return (
     <div>
         <form onSubmit={sendMessage}>
