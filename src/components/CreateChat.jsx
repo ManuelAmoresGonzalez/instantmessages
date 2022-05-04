@@ -14,6 +14,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
+    textAlign: 'center',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -27,6 +28,7 @@ export default function CreateChat() {
   const [nameConversation, setNameConversation] = useState("")
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const paraCopiar = auth.currentUser.uid; 
 
  async function createChat(e){
     e.preventDefault()
@@ -35,12 +37,12 @@ export default function CreateChat() {
         person1:auth.currentUser.uid,
         person2:id
       })
- } 
+ }
   
-
   return (
     <div>
       <Button onClick={handleOpen}>Nuevo Chat</Button>
+      <Button className='myID' onClick={() => navigator.clipboard.writeText(paraCopiar)}>Mi ID</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -49,15 +51,16 @@ export default function CreateChat() {
       >
         <Box sx={style}>
         <form type="submit">
-        <label>
+        <label style={{width: '100%'}}>
           <input
+            style={{widht: '100%'}}
             type="text"
             name="name"
             onChange={(event) => setId(event.target.value)}
             placeholder="Ingrese el uid del destinatario del chat"
           />
         </label>
-        <label>
+        <label style={{width: '100%'}}>
           <input
             type="text"
             name="name"

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import '../style/chatcomponent.css'
+import DragDropCOmponent from './DragDropCOmponent';
 
 //material UI
 import {Button, Input} from '@mui/material'
@@ -39,10 +40,11 @@ const SendMessage= ({idConversation}) => {
   }
 
   return (
-    <div className='inputsChat'>
+    <div className='inputs'>
         <form onSubmit={sendMessage}>
-          <Input  className='message-input' value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
-          <Button type='submit' >Enviar mensaje</Button>
+          <Input  style={{width:'65%', marginLeft:'10px', marginBottom:'4px'}} value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
+          <Button style={{backgroundColor:'#4d4dff', color:'white', marginLeft:'5px'}} type='submit' >Enviar mensaje</Button>
+          <DragDropCOmponent idConversation={idConversation} />
         </form>
     </div>
   )

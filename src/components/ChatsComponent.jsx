@@ -50,7 +50,7 @@ function ChatsComponent() {
   return (
     <div className='rowChats'>
       <div className='conversations'>
-      <Reminder/>
+      {/* <Reminder/> */}
         {conversations.map( index => (
           <div className='chats'>
             <Button onClick={(event) => openChat(event, index)}> {index}</Button>
@@ -64,7 +64,6 @@ function ChatsComponent() {
         <div className='botones'>
           <div className='botonesArriba'>
             <CreateChat />
-            <Button className='myID'>Mi ID</Button>
           </div>
           <SingOut/>
         </div>

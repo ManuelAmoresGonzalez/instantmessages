@@ -7,7 +7,7 @@ const MediaAudio= ({media}) => {
   const descifrar=(texto)=>{
     var bytes = CryptoJS.AES.decrypt(texto, 'ConejitosTraviesos');
     var textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
-    return textoDescifrado; 
+    return textoDescifrado;
   }
 
   return (

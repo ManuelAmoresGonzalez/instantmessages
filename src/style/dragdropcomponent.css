@@ -14,10 +14,19 @@ h5{
  }
 
  .image-upload-wrap {
-   bottom: -10;
-   text-align: center;
-   height: 100px;
-   border: 4px solid #d0d7de;
-   margin-left: 10px;
-   margin-right: 10px;
+  text-align: center;
+  height: 50px;
+  width: 75%;
+  border: dotted grey;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+ }
+
+ .titulo{
+  z-index: -500;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
  }

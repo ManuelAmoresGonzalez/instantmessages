@@ -9,6 +9,7 @@
 
 .photoMessage{
   margin-right: 18px;
+  margin-left: 18px;
   object-fit: cover;
   border-radius: 6px;
   height: 30vw;
@@ -44,6 +45,7 @@
   max-width: 200px;
   min-height: 100px;
   min-width: 100px;
+  margin-left: 18px;
   margin-top: 6px;
   margin-left: 6px;
   margin-bottom: 6px;
@@ -72,8 +74,9 @@
   background-color: white;
   position:fixed;
   bottom:0;
-  width:80%;
+  width:100%;
   z-index:100;
+  box-shadow: 5px 5px 5px 5px grey;
 }
 
 .messages{

@@ -60,9 +60,10 @@ function DragDropCOmponent({idConversation}) {
   
   return (
     <div>
-        <br />
         <div className="image-upload-wrap">
-            <h5>Arrastrar archivo</h5>
+          <span className="titulo">
+            Arrastre el archivo aqui
+          </span>
           <input
             className="file-upload-input"
             type="file"
@@ -71,6 +72,7 @@ function DragDropCOmponent({idConversation}) {
             onChange={(e) => {
                 sendFile(e);
             }}
+            placeholder='Arrastre el archivo aquí'
           />
         </div>
     </div>
