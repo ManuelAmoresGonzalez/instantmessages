@@ -1,5 +1,6 @@
 import React, { useState }  from 'react'
 import DateTimePicker from 'react-datetime-picker';
+import swal from "sweetalert2";
 
 
 export const Reminder = () => {
@@ -8,11 +9,7 @@ export const Reminder = () => {
 
   return (
     <div>
-
-        <DateTimePicker onChange={onChange} value={value} />
-        {            
-            console.log("Este es el valor: "+hoy+" el otro: "+ value)        
-        }
+        <h5>este es</h5>
     </div>
     
   )
