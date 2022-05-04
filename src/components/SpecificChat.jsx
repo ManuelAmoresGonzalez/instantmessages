@@ -8,7 +8,7 @@ const SpecificChat = () => {
 
   return (
     <div className='firstDivSpecific'>
-        Dele click en una conversación para ver los mensajes
+        Dale click en una conversación para ver los mensajes o crea una nueva conversación :)
     </div>
   )
 }

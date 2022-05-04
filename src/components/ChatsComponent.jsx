@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ChatComponent from './ChatComponent';
 import '../style/chatscomponent.css'
+import SingOut from './SingOut'
 
 //firebase
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -57,6 +58,14 @@ function ChatsComponent() {
             <Button onClick={(event) => openChat(event, index)}> {index}</Button>
           </div>
         ))}
+        <div className='botones'>
+          <div className='botonesArriba'>
+            <Button className='newChat'>Nuevo chat</Button>
+            <Button className='myID'>Mi ID</Button>
+          </div>
+          <SingOut/>
+        </div>
+
       </div>
       <div className='chat'>
         {displayChat? <ChatComponent  idConversation={idConversation} />: <SpecificChat/>}

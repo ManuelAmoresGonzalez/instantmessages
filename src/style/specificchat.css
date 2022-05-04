@@ -1,5 +1,8 @@
 .firstDivSpecific{
-    background: grey;
     height: 100vh;
     overflow: auto;
+    color: grey;
+    display: grid;
+    justify-content: center;
+    padding-top: 30%;
 }

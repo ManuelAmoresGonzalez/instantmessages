@@ -2,6 +2,7 @@ import React from 'react'
 
 //Material UI
 import {Button} from '@mui/material'
+import '../style/signin.css'
 
 //firebase
 import firebase from 'firebase/compat/app'

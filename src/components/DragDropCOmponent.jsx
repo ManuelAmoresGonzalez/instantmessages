@@ -57,14 +57,12 @@ function DragDropCOmponent({idConversation}) {
       typeFile:typeFile
     })
   }
-
-
   
   return (
     <div>
         <br />
         <div className="image-upload-wrap">
-            <h3>Arrastrar archivo</h3>
+            <h5>Arrastrar archivo</h5>
           <input
             className="file-upload-input"
             type="file"

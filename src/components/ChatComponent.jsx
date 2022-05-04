@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import SendMessage from './SendMessage';
-import SingOut from './SingOut'
 import '../style/chatcomponent.css'
 
 
@@ -28,10 +27,9 @@ const ChatComponent = ({idConversation}) =>{
 
   return (
     <div>
-      <SingOut />
       <div className='messages'>
         {messages.map( ({id,text, photoURL, uid, media, typeFile }) => (
-          <div className='boxMessages'>
+          <div>
             {
               <div className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}` } key={id}>
                 <div className='boxMessages'>
@@ -56,8 +54,11 @@ const ChatComponent = ({idConversation}) =>{
           </div>
         ))}
       </div>
-      <DragDropCOmponent idConversation={idConversation} />
-      <SendMessage idConversation={idConversation} />
+      <div class="inputs">
+        <DragDropCOmponent idConversation={idConversation} />
+        <SendMessage idConversation={idConversation} />
+      </div>
+
     </div>
   )
 }
