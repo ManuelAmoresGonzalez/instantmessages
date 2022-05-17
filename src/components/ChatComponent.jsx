@@ -6,7 +6,7 @@ import '../style/chatcomponent.css'
 
 //firebase
 import { database, auth } from '../firebaseConfig';
-import DragDropCOmponent from './DragDropCOmponent';
+//import DragDropCOmponent from './DragDropCOmponent';
 import MediaImg from './MediaImg';
 import MediaAudio from './MediaAudio';
 import MediaVideo from './MediaVideo';
@@ -17,7 +17,7 @@ import MediaText from './MediaText';
 const ChatComponent = ({idConversation}) =>{
 
   const [messages, setMessages] = useState([]);
-  let boolean=false
+  //let boolean=false
   useEffect(() => {
     database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').limit(100).onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
@@ -45,8 +45,11 @@ const ChatComponent = ({idConversation}) =>{
 
                     //typeFile === 'image' ? <MediaImg /> : <MediaVideo />
                   }
-                             
-                {/* <p>{text}</p> */}
+                  <div className='botonesMensajes'>
+                    <input type="button" value={"Editar"} />
+                    <input type="button" value={"Eliminar"} />  
+                  </div>
+                  
                 </div>
                 
               </div>

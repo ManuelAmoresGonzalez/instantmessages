@@ -88,3 +88,18 @@
   display: grid;
   grid-template-columns: 90% 10%;
 }
+
+input{
+  border: none;
+  width: 45%;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  background-color: #7979ff;
+  box-shadow: 5px 5px 5px grey;
+  color: white;
+  font-weight: 400;
+}
