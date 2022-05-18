@@ -46,8 +46,8 @@ const ChatComponent = ({idConversation}) =>{
                     //typeFile === 'image' ? <MediaImg /> : <MediaVideo />
                   }
                   <div className='botonesMensajes'>
-                    <input type="button" value={"Editar"} />
-                    <input type="button" value={"Eliminar"} />  
+                    <input type="button" value={"Editar"}/>
+                    <input type="button" value={"Eliminar"}/>  
                   </div>
                   
                 </div>

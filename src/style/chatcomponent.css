@@ -103,3 +103,8 @@ input{
   color: white;
   font-weight: 400;
 }
+
+.received .botonesMensajes{
+  display: none;
+  
+}
