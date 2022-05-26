@@ -11,7 +11,6 @@ const MediaText = ({text}) => {
     return textoDescifrado; 
   }
 
-  console.log(text);
   const newText = descifrar(text);
   return (
     <div className='texto'><p>{newText}</p></div>

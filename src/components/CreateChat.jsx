@@ -61,7 +61,7 @@ export default function CreateChat() {
           />
         </label>
         <label style={{width: '100%'}}>
-          <input
+            <input
             type="text"
             name="name"
             onChange={(event) => setNameConversation(event.target.value)}
