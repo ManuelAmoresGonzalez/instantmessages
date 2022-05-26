@@ -22,7 +22,7 @@ const SendMessage= ({idConversation}) => {
     const cifrar=(texto)=>{
       var textocifrado = CryptoJS.AES.encrypt(texto, 'ConejitosTraviesos').toString();
       return textocifrado;
-      }
+    }
     
     const descifrar=(texto)=>{
       var bytes = CryptoJS.AES.decrypt(texto, 'ConejitosTraviesos');

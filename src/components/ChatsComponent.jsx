@@ -44,7 +44,6 @@ function ChatsComponent() {
     e.preventDefault()
     setId(index)
     setDisplayChat(!displayChat)
-    console.log(idConversation)
   }
 
   return (
@@ -70,7 +69,7 @@ function ChatsComponent() {
 
       </div>
       <div className='chat'>
-        {displayChat? <ChatComponent  idConversation={idConversation} />: <SpecificChat/>}
+        {displayChat? <ChatComponent  idConversation={idConversation}  key={idConversation}/>: <SpecificChat/>}
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import SendMessage from './SendMessage';
 import '../style/chatcomponent.css'
 
 // Dialogo
-import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,11 +14,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 //firebase
 import { database, auth } from '../firebaseConfig';
+import firebase from "../../node_modules/firebase/compat"; 
 //import DragDropCOmponent from './DragDropCOmponent';
 import MediaImg from './MediaImg';
 import MediaAudio from './MediaAudio';
 import MediaVideo from './MediaVideo';
 import MediaText from './MediaText';
+import { Button } from 'bootstrap';
+
+//CryptoJS
+import CryptoJS from 'crypto-js'
 
 
 
@@ -35,22 +40,64 @@ const ChatComponent = ({idConversation}) =>{
   };
 
   const [messages, setMessages] = useState([]);
-  //let boolean=false
-  useEffect(() => {
-    database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').limit(100).onSnapshot( snapshot => {
+  const [docsName, setDocsName] = useState([]);
+  const [doc, setDoc] = useState([]);
+
+  function getMessage(createdAt){ 
+      database.collection('conversaciones/'+idConversation+'/messages').where("createdAt","==",createdAt).onSnapshot( snapshot => {
+        snapshot.docs.map( item =>   deleteMessage(item.id) )
+      })
+  }
+
+  function deleteMessage(id){
+    database.collection('conversaciones/'+idConversation+'/messages').doc(id).delete().then(() => {
+      console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+    
+  }
+  function getMeesageUpdate(createdAt){
+    database.collection('conversaciones/'+idConversation+'/messages').where("createdAt","==",createdAt).onSnapshot( snapshot => {
+      snapshot.docs.map( item =>   updateMessage(item.id) )
+    })
+  }
+
+  const cifrar=(texto)=>{
+    var textocifrado = CryptoJS.AES.encrypt(texto, 'ConejitosTraviesos').toString();
+    return textocifrado;
+  }
+
+  function updateMessage(id, message){
+
+    var MessageRef = database.collection('conversaciones/'+idConversation+'/messages').doc(id);
+    console.log(MessageRef);
+
+    var update = MessageRef.update({
+      text: cifrar(message),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    console.log(update);
+
+  }
+  useEffect(() => { 
+    database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
     })
     
   }, [])
 
+  const onSubmitHandler = (evento) => {
+    evento.preventDefault();
+  };
   return (
     <div>
       <div className='messages'>
-        {messages.map( ({id,text, photoURL, uid, media, typeFile }) => (
+        {messages.map( ({id,text, photoURL, uid, media, typeFile, createdAt }) => (
           <div>
             {
               <div className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}` } key={id}>
-                <div className='boxMessages'>
+                <div className='boxMessages'>{id}
                 <img className="photoURL" src={photoURL}></img> 
                   {(() => {
                           switch (typeFile) {
@@ -60,12 +107,10 @@ const ChatComponent = ({idConversation}) =>{
                             default:       return <MediaText  text={text}    />;
                           }
                         })()
-
-                    //typeFile === 'image' ? <MediaImg /> : <MediaVideo />
                   }
                   <div className='botonesMensajes'>
                     <input type="button" value={"Editar"} onClick={handleClickOpen}/>
-                    <input type="button" value={"Eliminar"}/>
+                    <input type="button" value={"Eliminar"} onClick={()=>getMessage(createdAt)} onSubmit={onSubmitHandler}/>
                   </div>
 
                   <Dialog open={open} onClose={handleClose}>
@@ -86,19 +131,13 @@ const ChatComponent = ({idConversation}) =>{
                       <Button onClick={handleClose}>Editar</Button>
                     </DialogActions>
                   </Dialog>
-                  
                 </div>
-                
               </div>
             }
           </div>
         ))}
       </div>
-      {/* <DragDropCOmponent idConversation={idConversation} /> */}
-
-      <SendMessage idConversation={idConversation} />
-
-
+      <SendMessage idConversation={idConversation} key={idConversation}/>
     </div>
   )
 }
