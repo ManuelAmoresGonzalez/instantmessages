@@ -1,0 +1,19 @@
+
+@media (min-width: 200px) and (max-width: 767.98px) {
+    .text-midle {
+        text-align: center;
+    }
+    .size-title{
+        font-size: 1.7rem;
+    }
+    .size-min-max{
+        font-size: 1.5rem;
+    }
+    .tempe {
+        font-size: 3.1rem;
+    }
+}
+
+
+
+  

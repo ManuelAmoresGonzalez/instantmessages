@@ -12,6 +12,7 @@ import {useAuthState} from 'react-firebase-hooks/auth'
 import { auth } from './firebaseConfig'
 import { Reminder } from './components/Reminder';
 import ViewReminder from './components/ViewReminder';
+import PageClima from './components/PageClima';
 
 function App() {
 
@@ -19,7 +20,11 @@ function App() {
   return (
     <div>
       
+      <div>
+      
       {user ? <ChatsComponent /> : <SignIn />}
+      
+    </div>
       
     </div>
   )
