@@ -11,9 +11,9 @@ function Clima({ data }) {
     <>
       <div className="card mt-3 bg-light shadow p-3 mb-5 bg-white rounded">
         <h4 class="mt-4 text-midle">Datos del Clima</h4>
-        <h3 className="card-header size-title bg-light">
-          La temperatura en <span className="font-weight-bold">{name}</span> es:
-        </h3>
+        <h4 className="card-header size-title bg-light">
+          Temperatura en {name}
+        </h4>
         <div className="card-body">
           <h4 className="card-title temperatura text-center tempe">
             {_temperatura_actual} C&deg;

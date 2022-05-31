@@ -1,11 +1,10 @@
 .principalClima{
     width: 100%;
-    margin-left: 5%;
     background: rgb(231, 236, 236);
-    position: absolute;  
+    position: fixed; 
+    margin-left: 5%; 
     height: auto; 
     transform: translate(0, -800px);
-    transition-duration: 4s;
 }
 
 .closeModal{
@@ -18,7 +17,8 @@
 }
 
 .buttonSend{
-    background: green;
+    background: rgb(19, 178, 19);
+    margin-top: 11%;
     width: 100%;
 }
   
