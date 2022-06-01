@@ -28,10 +28,22 @@ const SendMessage= ({idConversation}) => {
     }
 
     const deleteDoc=(id)=>{
+      console.log(id)
       database.collection('recordatorios').doc(id).delete().then(() => {
         console.log("Document successfully deleted!");
       }).catch((error) => {
           console.error("Error removing document: ", error);
+      });
+    }
+
+    const UpdateDoc=(doc,date, descripcion)=>{
+      console.log(doc)
+      var docRef = database.collection('recordatorios').doc(doc);
+
+      var document = docRef.update({
+        description: descripcion,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        executeIt: date
       });
     }
     
@@ -47,27 +59,36 @@ const SendMessage= ({idConversation}) => {
       }else{
         setClima(true)
       }
-    }else if(message.includes('///reminder')){ // message llega = ///reminder-fechaDeEjecución-descripcion
+    }else if(message.includes('///reminder')){ // message llega = ///reminder-id-fechaDeEjecución-descripcion
       const values = message.split("-");
-      console.log(values[1], "=> " , values[2])
-      let date = new Date(values[1])
+      console.log(values[0], "=> " , values[1])
+      console.log(values[2], "=> " , values[3])
+      let id = values[1];
+      let date = new Date(values[2])
+      let description = values[3]
       await database.collection('recordatorios/').add({
-        description: values[2],
+        description: description,
         uid,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        executeIt: date
+        executeIt: date,
+        id:id
       })
-    }else if(message.includes('///deleteReminder')){ // message llega = ///deleteReminder-fechaDeEjecución
+    }else if(message.includes('///deleteReminder')){ // message llega = ///deleteReminder-id
       const values = message.split("-");
-      console.log(values[1])
-      let date = new Date(values[1])
-      database.collection('recordatorios').where("executeIt","==",date).onSnapshot( snapshot => {
+      database.collection('recordatorios').where("id","==" ,values[1],).onSnapshot( snapshot => {
+        console.log("dentro de la consulta")
         snapshot.docs.map( item =>   deleteDoc(item.id) )
       })
-    }else if(message.includes('///updateReminder')){
-
-    }
-    else{
+    }else if(message.includes('///updateReminder')){ // ///updateReminder-id-fecha-description 
+      const values = message.split("-");
+      let id = values[1];
+      let date = new Date(values[2])
+      let description = values[3]
+      console.log(values[1], "=> " , values[2])
+      database.collection('recordatorios').where("id","==",id).onSnapshot( snapshot => {
+        snapshot.docs.map( item =>   UpdateDoc(item.id, date, description) )
+      })
+      
     }else if(message.includes('///Voz')){
       if(voz){
         setVoz(false)
