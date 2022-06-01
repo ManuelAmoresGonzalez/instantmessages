@@ -20,12 +20,19 @@ const SendMessage= ({idConversation}) => {
 
   async function sendMessage(e){
     e.preventDefault()
-    console.log("Entre al componente 1")
     const {uid, photoURL} = auth.currentUser
     
     const cifrar=(texto)=>{
       var textocifrado = CryptoJS.AES.encrypt(texto, 'ConejitosTraviesos').toString();
       return textocifrado;
+    }
+
+    const deleteDoc=(id)=>{
+      database.collection('recordatorios').doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+      }).catch((error) => {
+          console.error("Error removing document: ", error);
+      });
     }
     
     const descifrar=(texto)=>{
@@ -40,6 +47,27 @@ const SendMessage= ({idConversation}) => {
       }else{
         setClima(true)
       }
+    }else if(message.includes('///reminder')){ // message llega = ///reminder-fechaDeEjecución-descripcion
+      const values = message.split("-");
+      console.log(values[1], "=> " , values[2])
+      let date = new Date(values[1])
+      await database.collection('recordatorios/').add({
+        description: values[2],
+        uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        executeIt: date
+      })
+    }else if(message.includes('///deleteReminder')){ // message llega = ///deleteReminder-fechaDeEjecución
+      const values = message.split("-");
+      console.log(values[1])
+      let date = new Date(values[1])
+      database.collection('recordatorios').where("executeIt","==",date).onSnapshot( snapshot => {
+        snapshot.docs.map( item =>   deleteDoc(item.id) )
+      })
+    }else if(message.includes('///updateReminder')){
+
+    }
+    else{
     }else if(message.includes('///Voz')){
       if(voz){
         setVoz(false)
