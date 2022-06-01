@@ -11,7 +11,7 @@ const MediaVideo= ({media}) => {
   }
 
   return (
-    <div><video autoplay controls className='video' src={descifrar(media)}  width="100" height="100"></video>
+    <div><video autoPlay controls className='video' src={descifrar(media)}  width="100" height="100"></video>
     </div>
   )
 }
