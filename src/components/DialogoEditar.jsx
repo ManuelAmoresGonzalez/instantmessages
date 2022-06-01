@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Button, Input} from '@mui/material'
 import '../style/chatcomponent.css'
 
 // Dialogo
@@ -12,6 +13,12 @@ import { Modal } from 'react-bootstrap';
 
 const DialogoEditar = (props) => {
 
+    const [message, setMessage] = useState('');
+
+    function sendMessage(){
+        props.funcion(props.useId,message)
+    }
+
     return (
         <Modal
         {...props}
@@ -19,18 +26,14 @@ const DialogoEditar = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         >
+        {props.funcion(props.useId,message)}
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+                <p>Editar</p>
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <h4>Centered Modal</h4>
-            <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-            </p>
+          <Input  style={{width:'65%', marginLeft:'10px', marginBottom:'4px'}} value={message} onChange={ (event) => setMessage(event.target.value) }  placeholder='Escriba su mensaje...'  />
         </Modal.Body>
         <Modal.Footer>
             <input type="button" value={"Cerrar"} onClick={props.onHide}/>

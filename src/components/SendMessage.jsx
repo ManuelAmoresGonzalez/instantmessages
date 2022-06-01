@@ -11,10 +11,12 @@ import firebase from "../../node_modules/firebase/compat";
 //CryptoJS
 import CryptoJS from 'crypto-js'
 import PageClima from './PageClima';
+import Dictaphone from './Dictaphone';
 
 const SendMessage= ({idConversation}) => {
   const [message, setMessage] = useState('');
   const [clima,setClima] = useState(false);
+  const [voz,setVoz] = useState(false);
 
   async function sendMessage(e){
     e.preventDefault()
@@ -33,11 +35,16 @@ const SendMessage= ({idConversation}) => {
     }
 
     if(message.includes('///Clima')){
-      console.log("si entra al comentario de bot")
       if(clima){
         setClima(false)
       }else{
         setClima(true)
+      }
+    }else if(message.includes('///Voz')){
+      if(voz){
+        setVoz(false)
+      }else{
+        setVoz(true)
       }
     }else{
       await database.collection('conversaciones/'+ idConversation +'/messages').add({
@@ -47,9 +54,7 @@ const SendMessage= ({idConversation}) => {
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       })
       setMessage('');
-    }
-    
-    
+    }    
   }
 
   return (
@@ -63,6 +68,7 @@ const SendMessage= ({idConversation}) => {
       </div>
       <div>
       {clima ? <PageClima clima={setClima}/>: null} 
+      {voz ? <Dictaphone voz={setMessage} vozState= {setVoz}/>: null} 
       </div>
         
     </div>

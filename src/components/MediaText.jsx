@@ -3,7 +3,14 @@ import React from 'react'
 import CryptoJS from 'crypto-js'
 import '../style/chatcomponent.css'
 
-const MediaText = ({text}) => {
+const MediaText = ({text, modal, mensajeviejo, id, funcion}) => {
+  
+
+  function changeState(){    
+    mensajeviejo(descifrar(text))
+    funcion(id)
+    modal(true)
+  }
 
   const descifrar=(texto)=>{
     var bytes = CryptoJS.AES.decrypt(texto, 'ConejitosTraviesos');
@@ -11,9 +18,14 @@ const MediaText = ({text}) => {
     return textoDescifrado; 
   }
 
+  
+
   const newText = descifrar(text);
   return (
-    <div className='texto'><p>{newText}</p></div>
+    <div className='texto'><p>{newText}</p>
+    <input type="button" value={"Editar"} onClick={() => changeState()} />
+    </div>
+    
   )
 }
 

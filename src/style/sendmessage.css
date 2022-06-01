@@ -7,3 +7,10 @@
     outline: none;
     font-size: 15px;
   }
+
+  .dictaPhone{
+    width: 10%;
+    height: auto;
+    margin-left: 10%;
+    transform: translate(0,-200px);
+  }

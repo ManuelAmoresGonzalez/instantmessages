@@ -4,6 +4,7 @@ import SendMessage from './SendMessage';
 import DialogoEditar from './DialogoEditar';
 import '../style/chatcomponent.css'
 
+
 //firebase
 import { database, auth } from '../firebaseConfig';
 import firebase from "../../node_modules/firebase/compat"; 
@@ -21,6 +22,9 @@ import CryptoJS from 'crypto-js';
 const ChatComponent = ({idConversation}) =>{
 
   const [modalShow, setModalShow] = React.useState(false);
+  const [oldMessage, setoldMessage] = useState('');
+  const [useId, setuseId] = useState('');
+  
 
   const [messages, setMessages] = useState([]);
   const [docsName, setDocsName] = useState([]);
@@ -40,9 +44,9 @@ const ChatComponent = ({idConversation}) =>{
     });
     
   }
-  function getMessageUpdate(createdAt){
+  function getMessageUpdate(createdAt, nombre){
     database.collection('conversaciones/'+idConversation+'/messages').where("createdAt","==",createdAt).onSnapshot( snapshot => {
-      snapshot.docs.map( item =>   updateMessage(item.id) )
+      snapshot.docs.map( item =>   updateMessage(item.id, nombre) )
     })
   }
 
@@ -51,16 +55,19 @@ const ChatComponent = ({idConversation}) =>{
     return textocifrado;
   }
 
-  function updateMessage(id, message){
+  const descifrar=(texto)=>{
+    var bytes = CryptoJS.AES.decrypt(texto, 'ConejitosTraviesos');
+    var textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
+    return textoDescifrado; 
+  }
 
+  function updateMessage(id, message){
+    console.log(message)
     var MessageRef = database.collection('conversaciones/'+idConversation+'/messages').doc(id);
-    console.log(MessageRef);
 
     var update = MessageRef.update({
-      text: cifrar(message),
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      text: cifrar(message)
     });
-    console.log(update);
 
   }
   useEffect(() => { 
@@ -87,18 +94,21 @@ const ChatComponent = ({idConversation}) =>{
                             case "image":  return <MediaImg   media={media}  />;
                             case "video":  return <MediaVideo media={media}  />;
                             case "audio":  return <MediaAudio media={media}  />;
-                            default:       return <MediaText  text={text}    />;
+                            default:       return <MediaText  text={text} modal= {setModalShow} mensajeviejo = {setoldMessage} id={createdAt}  funcion= {setuseId}/>;
                           }
                         })()
                   }
                   <div className='botonesMensajes'>
-                    <input type="button" value={"Editar"} onClick={() => setModalShow(true)}/>
+                    {/* <input type="button" value={"Editar"} onClick={() => setModalShow(true)}/> */}
                     <input type="button" value={"Eliminar"} onClick={()=>getMessage(createdAt)} onSubmit={onSubmitHandler}/>
                   </div>
-                  <DialogoEditar
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
+                  {modalShow? <DialogoEditar
+                                show={modalShow}
+                                text= {oldMessage}
+                                funcion= {getMessageUpdate}
+                                useId= {useId}
+                                onHide={() => setModalShow(false)}
+                  />: null}
                 </div>
               </div>
             }
