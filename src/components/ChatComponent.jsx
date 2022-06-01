@@ -14,6 +14,7 @@ import MediaAudio from './MediaAudio';
 import MediaVideo from './MediaVideo';
 import MediaText from './MediaText';
 import { Modal } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 
 //CryptoJS
@@ -29,6 +30,8 @@ const ChatComponent = ({idConversation}) =>{
   const [messages, setMessages] = useState([]);
   const [docsName, setDocsName] = useState([]);
   const [doc, setDoc] = useState([]);
+
+  const [reminders, setReminders] = useState([])
 
   function getMessage(createdAt){ 
       database.collection('conversaciones/'+idConversation+'/messages').where("createdAt","==",createdAt).onSnapshot( snapshot => {
@@ -74,8 +77,33 @@ const ChatComponent = ({idConversation}) =>{
     database.collection('conversaciones/'+idConversation+'/messages').orderBy('createdAt').onSnapshot( snapshot => {
       setMessages(snapshot.docs.map( doc =>  doc.data() ));
     })
+    database.collection('recordatoris').orderBy('executeIt').onSnapshot( snapshot => {
+      setReminders(snapshot.docs.map( doc =>  doc.data() ));
+    })
     
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      viewReminders()
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const viewReminders=()=>{
+    console.log("entro en reminders")
+    console.log(reminders)
+    reminders.map(({executeIt,description}) =>{
+     let date = new Date()
+      if(date >= executeIt){
+        Swal.fire(
+          'Reminder',
+          description,
+          'success'
+        )
+     } 
+    })
+  }
 
   const onSubmitHandler = (evento) => {
     evento.preventDefault();
