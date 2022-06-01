@@ -12,6 +12,7 @@ import firebase from "../../node_modules/firebase/compat";
 import CryptoJS from 'crypto-js'
 import PageClima from './PageClima';
 import Dictaphone from './Dictaphone';
+import Swal from 'sweetalert2';
 
 const SendMessage= ({idConversation}) => {
   const [message, setMessage] = useState('');
@@ -30,7 +31,11 @@ const SendMessage= ({idConversation}) => {
     const deleteDoc=(id)=>{
       console.log(id)
       database.collection('recordatorios').doc(id).delete().then(() => {
-        console.log("Document successfully deleted!");
+        Swal.fire(
+          'Reminder',
+          'Reminder eliminado con exito',
+          'success'
+        )
       }).catch((error) => {
           console.error("Error removing document: ", error);
       });
@@ -73,6 +78,11 @@ const SendMessage= ({idConversation}) => {
         executeIt: date,
         id:id
       })
+      Swal.fire(
+        'Reminder',
+        'Reminder creado con exito',
+        'success'
+      )
     }else if(message.includes('///deleteReminder')){ // message llega = ///deleteReminder-id
       const values = message.split("-");
       database.collection('recordatorios').where("id","==" ,values[1],).onSnapshot( snapshot => {
